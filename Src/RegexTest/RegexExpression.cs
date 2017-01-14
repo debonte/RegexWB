@@ -5,32 +5,21 @@ using System.Collections;
 
 namespace RegexTest
 {
-	/// <summary>
-	/// Summary description for RegexExpression.
-	/// </summary>
 	public class RegexExpression: RegexItem
 	{
-		ArrayList	items = new ArrayList();
-
 		public RegexExpression(RegexBuffer buffer)
 		{
 			Parse(buffer);
 		}
 	
-		public ArrayList Items
-		{
-			get
-			{
-				return items;
-			}
-		}
+		public ArrayList Items { get; } = new ArrayList();
 
 		public override string ToHumanReadableRepresentation(int indent)
 		{
 			var result = new StringBuilder();
 			var line = new StringBuilder();
 
-			foreach (RegexItem item in items)
+			foreach (RegexItem item in Items)
 			{
 				var regexChar = item as RegexCharacter;
 				if (regexChar != null && !regexChar.Special)
@@ -43,15 +32,15 @@ namespace RegexTest
 					if (line.Length != 0)
 					{
 						result.Append(new String(' ', indent));
-						result.Append(line.ToString() + "\r\n");
+						result.AppendLine(line.ToString());
 						line = new StringBuilder();
 					}
-					result.Append(new String(' ', indent));
-					string itemString = item.ToHumanReadableRepresentation(indent);
+					result.Append(new string(' ', indent));
+					var itemString = item.ToHumanReadableRepresentation(indent);
 					if (itemString.Length != 0)
 					{
 						result.Append(itemString);
-						Regex newLineAlready = new Regex(@"\r\n$");
+						var newLineAlready = new Regex(@"\r\n$");
 						if (!newLineAlready.IsMatch(itemString))
 						{
 							result.Append("\r\n");
@@ -61,14 +50,14 @@ namespace RegexTest
 			}
 			if (line.Length != 0)
 			{
-				result.Append(new String(' ', indent));
-				result.Append(line.ToString() + "\r\n");
+				result.Append(new string(' ', indent));
+				result.AppendLine(line.ToString());
 			}
 			return result.ToString();
 		}
         
-			// eat the whole comment until the end of line...
-		void EatComment(RegexBuffer buffer)
+		// eat the whole comment until the end of line...
+		private static void EatComment(RegexBuffer buffer)
 		{
 			while (buffer.Current != '\r')
 			{
@@ -94,7 +83,7 @@ namespace RegexTest
 					switch (buffer.Current)
 					{
 						case '(':
-							items.Add(new RegexCapture(buffer));
+							Items.Add(new RegexCapture(buffer));
 							break;
 
 						case ')':
@@ -102,19 +91,19 @@ namespace RegexTest
 							return;
 
 						case '[':
-							items.Add(new RegexCharClass(buffer));
+							Items.Add(new RegexCharClass(buffer));
 							break;
 
 						case '{':
-							items.Add(new RegexQuantifier(buffer));
+							Items.Add(new RegexQuantifier(buffer));
 							break;
 
 						case '|':
-							items.Add(new RegexAlternate(buffer));
+							Items.Add(new RegexAlternate(buffer));
 							break;
 
 						case '\\':
-							items.Add(new RegexCharacter(buffer));
+							Items.Add(new RegexCharacter(buffer));
 							break;
 
 						case '#':
@@ -124,12 +113,12 @@ namespace RegexTest
 							}
 							else
 							{
-								items.Add(new RegexCharacter(buffer));
+								Items.Add(new RegexCharacter(buffer));
 							}
 							break;
 
 						default:
-							items.Add(new RegexCharacter(buffer));
+							Items.Add(new RegexCharacter(buffer));
 							break;
 					}
 				}
