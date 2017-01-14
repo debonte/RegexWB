@@ -27,45 +27,44 @@ namespace RegexTest
 
 		public override string ToHumanReadableRepresentation(int indent)
 		{
-			StringBuilder buf = new StringBuilder();
-			StringBuilder bufChar = new StringBuilder();
+			var result = new StringBuilder();
+			var line = new StringBuilder();
 
 			foreach (RegexItem item in items)
 			{
-				RegexCharacter regexChar = item as RegexCharacter;
+				var regexChar = item as RegexCharacter;
 				if (regexChar != null && !regexChar.Special)
 				{
-					bufChar.Append(regexChar.ToHumanReadableRepresentation(indent));
+					line.Append(regexChar.ToHumanReadableRepresentation(indent));
 				}
 				else
 				{
 					// add any buffered chars...
-					if (bufChar.Length != 0)
+					if (line.Length != 0)
 					{
-						buf.Append(new String(' ', indent));
-						buf.Append(bufChar.ToString() + "\r\n");
-						bufChar = new StringBuilder();
+						result.Append(new String(' ', indent));
+						result.Append(line.ToString() + "\r\n");
+						line = new StringBuilder();
 					}
-					buf.Append(new String(' ', indent));
+					result.Append(new String(' ', indent));
 					string itemString = item.ToHumanReadableRepresentation(indent);
 					if (itemString.Length != 0)
 					{
-						buf.Append(itemString);
+						result.Append(itemString);
 						Regex newLineAlready = new Regex(@"\r\n$");
 						if (!newLineAlready.IsMatch(itemString))
 						{
-							buf.Append("\r\n");
+							result.Append("\r\n");
 						}
 					}
 				}
 			}
-			if (bufChar.Length != 0)
+			if (line.Length != 0)
 			{
-				buf.Append(new String(' ', indent));
-				buf.Append(bufChar.ToString() + "\r\n");
-				bufChar = new StringBuilder();
+				result.Append(new String(' ', indent));
+				result.Append(line.ToString() + "\r\n");
 			}
-			return buf.ToString();
+			return result.ToString();
 		}
         
 			// eat the whole comment until the end of line...
