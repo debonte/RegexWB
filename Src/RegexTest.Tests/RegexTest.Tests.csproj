@@ -50,10 +50,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestInterpret.cs" />
-    <Compile Include="TestInterpretAnchor.cs" />
-    <Compile Include="TestInterpretGrouping.cs" />
-    <Compile Include="TestInterpretOptions.cs" />
+    <Compile Include="Acceptance\TestInterpret.cs" />
+    <Compile Include="Acceptance\TestInterpretAnchor.cs" />
+    <Compile Include="Acceptance\TestInterpretGrouping.cs" />
+    <Compile Include="Acceptance\TestInterpretOptions.cs" />
     <Compile Include="Text\Indenting.cs" />
   </ItemGroup>
   <ItemGroup>
