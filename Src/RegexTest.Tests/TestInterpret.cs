@@ -32,7 +32,7 @@ namespace RegexTest
 		{
 			RegexBuffer buffer = new RegexBuffer(regex);
 			RegexExpression expression = new RegexExpression(buffer);
-			string output = expression.ToString(0);
+			string output = expression.ToHumanReadableRepresentation(0);
 			return output;
 		}
 

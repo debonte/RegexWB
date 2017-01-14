@@ -54,7 +54,7 @@ namespace RegexTest
 			buffer.AddLookup(this, startLoc, buffer.Offset - 1);
 		}
 
-		public override string ToString(int offset)
+		public override string ToHumanReadableRepresentation(int offset)
 		{
 			return(description);
 		}		

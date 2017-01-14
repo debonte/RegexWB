@@ -13,7 +13,7 @@ namespace RegexTest
 
 		public RegexRef(RegexItem regexItem, int start, int end)
 		{
-			stringValue = regexItem.ToString(0);
+			stringValue = regexItem.ToHumanReadableRepresentation(0);
 			this.start = start;
 			this.end = end;
 		}

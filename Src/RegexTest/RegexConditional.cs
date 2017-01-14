@@ -53,11 +53,11 @@ namespace RegexTest
 			buffer.Offset++;	// eat closing parenthesis
 		}
 
-		public override string ToString(int offset)
+		public override string ToHumanReadableRepresentation(int offset)
 		{
 			string indent = new String(' ', offset);
 			string result;
-			result = indent + "if: " + expression.ToString(0);
+			result = indent + "if: " + expression.ToHumanReadableRepresentation(0);
 
 			result += indent + "match: ";
 
@@ -70,7 +70,7 @@ namespace RegexTest
 				}
 				else
 				{
-					result += item.ToString(offset);
+					result += item.ToHumanReadableRepresentation(offset);
 				}
 			}
 			result += "\r\n";

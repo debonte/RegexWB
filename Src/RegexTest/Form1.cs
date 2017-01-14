@@ -1641,7 +1641,7 @@ namespace RegexTest
 			{
 				RegexExpression exp = new RegexExpression(buffer);
 
-				Output.Text = exp.ToString(0);
+				Output.Text = exp.ToHumanReadableRepresentation(0);
 
 			}
 			catch (Exception ex)

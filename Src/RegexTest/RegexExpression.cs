@@ -25,7 +25,7 @@ namespace RegexTest
 			}
 		}
 
-		public override string ToString(int indent)
+		public override string ToHumanReadableRepresentation(int indent)
 		{
 			StringBuilder buf = new StringBuilder();
 			StringBuilder bufChar = new StringBuilder();
@@ -35,7 +35,7 @@ namespace RegexTest
 				RegexCharacter regexChar = item as RegexCharacter;
 				if (regexChar != null && !regexChar.Special)
 				{
-					bufChar.Append(regexChar.ToString(indent));
+					bufChar.Append(regexChar.ToHumanReadableRepresentation(indent));
 				}
 				else
 				{
@@ -47,7 +47,7 @@ namespace RegexTest
 						bufChar = new StringBuilder();
 					}
 					buf.Append(new String(' ', indent));
-					string itemString = item.ToString(indent);
+					string itemString = item.ToHumanReadableRepresentation(indent);
 					if (itemString.Length != 0)
 					{
 						buf.Append(itemString);

@@ -141,7 +141,7 @@ namespace RegexTest
 				if (canCoalesce)
 				{
 					RegexRef lastItem = (RegexRef) expressionLookup[expressionLookup.Count - 1];
-					lastItem.StringValue += item.ToString(0);
+					lastItem.StringValue += item.ToHumanReadableRepresentation(0);
 					lastItem.Length += endLocation - startLocation + 1;
 				}
 				else

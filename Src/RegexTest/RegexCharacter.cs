@@ -201,7 +201,7 @@ namespace RegexTest
 
 #endif
 
-		public override string ToString(int offset)
+		public override string ToHumanReadableRepresentation(int offset)
 		{
 			return character;
 		}

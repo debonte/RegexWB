@@ -16,6 +16,6 @@ namespace RegexTest
 
 		}
 
-		public abstract string ToString(int indent);
+		public abstract string ToHumanReadableRepresentation(int indent);
 	}
 }

@@ -318,12 +318,12 @@ namespace RegexTest
 			return false;
 		}
 
-		public override string ToString(int offset)
+		public override string ToHumanReadableRepresentation(int offset)
 		{
 			string result = description;
 			if (expression != null)
 			{
-				result += "\r\n" + expression.ToString(offset + 2) + 
+				result += "\r\n" + expression.ToHumanReadableRepresentation(offset + 2) + 
 				new String(' ', offset) + "End Capture";
 			}
 			return result;

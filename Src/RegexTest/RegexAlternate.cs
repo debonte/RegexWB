@@ -12,7 +12,7 @@ namespace RegexTest
 			buffer.MoveNext();		// skip "|"
 		}
 
-		public override string ToString(int offset)
+		public override string ToHumanReadableRepresentation(int offset)
 		{
 			return(new String(' ', offset) + "or");
 		}		
