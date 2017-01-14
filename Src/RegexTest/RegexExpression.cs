@@ -2,6 +2,7 @@ using System;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Collections;
+using RegexTest.Text;
 
 namespace RegexTest
 {
@@ -31,7 +32,7 @@ namespace RegexTest
 					// add any buffered chars...
 					if (line.Length != 0)
 					{
-						result.Append(new String(' ', indent));
+						result.Append(Indent.By(indent));
 						result.AppendLine(line.ToString());
 						line = new StringBuilder();
 					}
@@ -50,7 +51,7 @@ namespace RegexTest
 			}
 			if (line.Length != 0)
 			{
-				result.Append(new string(' ', indent));
+				result.Append(Indent.By(indent));
 				result.AppendLine(line.ToString());
 			}
 			return result.ToString();

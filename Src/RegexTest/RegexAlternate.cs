@@ -1,9 +1,8 @@
-using System;
-using System.Text.RegularExpressions;
+using RegexTest.Text;
 
 namespace RegexTest
 {
-	class RegexAlternate: RegexItem
+	internal class RegexAlternate: RegexItem
 	{
 		public RegexAlternate(RegexBuffer buffer)
 		{
@@ -14,7 +13,7 @@ namespace RegexTest
 
 		public override string ToHumanReadableRepresentation(int offset)
 		{
-			return(new String(' ', offset) + "or");
-		}		
+			return(Indent.By(offset) + "or");
+		}
 	}
 }
