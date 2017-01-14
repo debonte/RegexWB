@@ -2,7 +2,7 @@ using RegexTest.Text;
 
 namespace RegexTest
 {
-	internal class RegexAlternate: RegexItem
+	public class RegexAlternate: RegexItem
 	{
 		public RegexAlternate(RegexBuffer buffer)
 		{
@@ -14,6 +14,11 @@ namespace RegexTest
 		public override string ToHumanReadableRepresentation(int offset)
 		{
 			return(Indent.By(offset) + "or");
+		}
+
+		public InterpretedInEnglish Interpret()
+		{
+			return new InterpretedInEnglish("or");
 		}
 	}
 }

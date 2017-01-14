@@ -54,6 +54,7 @@
     <Compile Include="Acceptance\TestInterpretAnchor.cs" />
     <Compile Include="Acceptance\TestInterpretGrouping.cs" />
     <Compile Include="Acceptance\TestInterpretOptions.cs" />
+    <Compile Include="RepresentationInEnglish\InterpretingAlternate.cs" />
     <Compile Include="Text\Indenting.cs" />
   </ItemGroup>
   <ItemGroup>

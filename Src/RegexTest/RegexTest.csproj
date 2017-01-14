@@ -126,6 +126,7 @@
     <Compile Include="HoverTooltip.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Text\InterpretedInEnglish.cs" />
     <Compile Include="Text\Indent.cs" />
     <Compile Include="LibraryMenuItem.cs">
       <SubType>Component</SubType>
