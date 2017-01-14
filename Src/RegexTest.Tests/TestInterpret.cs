@@ -1,81 +1,30 @@
-
-#region Change History
-
-// DATE------  CHANGED BY---  CHANGEID#  DESCRIPTION---------------------------
-// 2015-05-17  M. Lansdaal    n/a        Initial version.
-// 2015-06-13  M. Lansdaal    n/a        PlayerInfo deprecated. Replaced by PerformanceInfo
-//
-
-#endregion
-
-
-
-using System;
 using NUnit.Framework;
+using RegexTest;
 
-namespace RegexTest
+namespace RegexWorkbench.Tests
 {
-	/// <summary>
-	/// Summary description for TestInterpret.
-	/// </summary>
 	[TestFixture]
 	public class TestInterpret
 	{
-		public TestInterpret()
+		private static string Interpret(string regex)
 		{
-			//
-			// TODO: Add constructor logic here
-			//
+			return new RegexExpression(new RegexBuffer(regex)).ToHumanReadableRepresentation(0);
 		}
 
-		string Interpret(string regex)
+		[TestCase(@"Test", "Test\r\n", TestName="Normal Chars")]
+		[TestCase(@"\a", "A bell (alarm) \\u0007 \r\n", TestName = "Character Shortcut a")]
+		[TestCase(@"\t", "A tab \\u0009 \r\n", TestName = "Character Shortcut t")]
+		[TestCase(@"\r", "A carriage return \\u000D \r\n", TestName = "Character Shortcut r")]
+		[TestCase(@"\v", "A vertical tab \\u000B \r\n", TestName = "Character Shortcut v")]
+		[TestCase(@"\f", "A form feed \\u000C \r\n", TestName = "Character Shortcut f")]
+		[TestCase(@"\n", "A new line \\u000A \r\n", TestName = "Character Shortcut n")]
+		[TestCase(@"\e", "An escape \\u001B \r\n", TestName = "Character Shortcut e")]
+		[TestCase(@"\xFF", "Hex FF\r\n", TestName = "Character Shortcut x")]
+		[TestCase(@"\cC", "CTRL-C\r\n", TestName = "Character Shortcut c")]
+		[TestCase(@"\u1234", "Unicode 1234\r\n", TestName = "Character Shortcut u")]
+		public void InterpretingTest(string inputString, string expectedString)
 		{
-			RegexBuffer buffer = new RegexBuffer(regex);
-			RegexExpression expression = new RegexExpression(buffer);
-			string output = expression.ToHumanReadableRepresentation(0);
-			return output;
-		}
-
-		[Test]
-		public void TestNormalChars()
-		{
-			string output = Interpret("Test");
-			Assert.AreEqual("Test\r\n", output);
-		}
-
-
-		[Test]
-		public void TestCharacterShortcuts()
-		{
-			string output = Interpret(@"\a");
-			Assert.AreEqual("A bell (alarm) \\u0007 \r\n", output);
-
-			output = Interpret(@"\t");
-			Assert.AreEqual("A tab \\u0009 \r\n", output);
-			
-			output = Interpret(@"\r");
-			Assert.AreEqual("A carriage return \\u000D \r\n", output);
-			
-			output = Interpret(@"\v");
-			Assert.AreEqual("A vertical tab \\u000B \r\n", output);
-			
-			output = Interpret(@"\f");
-			Assert.AreEqual("A form feed \\u000C \r\n", output);
-			
-			output = Interpret(@"\n");
-			Assert.AreEqual("A new line \\u000A \r\n", output);
-
-			output = Interpret(@"\e");
-			Assert.AreEqual("An escape \\u001B \r\n", output);
-
-			output = Interpret(@"\xFF");
-			Assert.AreEqual("Hex FF\r\n", output);
-
-			output = Interpret(@"\cC");
-			Assert.AreEqual("CTRL-C\r\n", output);
-
-			output = Interpret(@"\u1234");
-			Assert.AreEqual("Unicode 1234\r\n", output);
+			Assert.AreEqual(expectedString, Interpret(inputString));
 		}
 
 		[Test]
