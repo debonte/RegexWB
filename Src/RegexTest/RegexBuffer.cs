@@ -27,7 +27,7 @@ namespace RegexTest
 		{
 			get
 			{
-				if (offset >= expression.Length)
+				if (AtEnd)
 					throw new Exception("Beyond end of buffer");
 				return expression[offset];
 			}
@@ -42,11 +42,33 @@ namespace RegexTest
 		{
 			get
 			{
-				return offset >= expression.Length;
+                while (offset < expression.Length &&
+                       IgnorePatternWhitespace &&
+                       IsWhitespace(Current))
+                {
+                    MoveNext();
+                    continue;
+                }
+
+                return offset >= expression.Length;
 			}
 		}
 
-		public int Offset
+        private static bool IsWhitespace(char ch)
+        {
+            switch (ch)
+            {
+                case ' ':
+                case '\r':
+                case '\n':
+                case '\t':
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+        public int Offset
 		{
 			get
 			{

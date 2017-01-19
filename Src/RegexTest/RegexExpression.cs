@@ -81,58 +81,46 @@ namespace RegexTest
 		{
 			while (!buffer.AtEnd)
 			{
-					// if this regex ignores whitespace, we need to ignore these
-				if (buffer.IgnorePatternWhitespace &&
-					((buffer.Current == ' ') ||
-					(buffer.Current == '\r') ||
-					(buffer.Current == '\n') ||
-					(buffer.Current == '\t')))
+				switch (buffer.Current)
 				{
-					buffer.MoveNext();
-				}
-				else
-				{
-					switch (buffer.Current)
-					{
-						case '(':
-							items.Add(new RegexCapture(buffer));
-							break;
+					case '(':
+						items.Add(new RegexCapture(buffer));
+						break;
 
-						case ')':
-							// end of closure; just return.
-							return;
+					case ')':
+						// end of closure; just return.
+						return;
 
-						case '[':
-							items.Add(new RegexCharClass(buffer));
-							break;
+					case '[':
+						items.Add(new RegexCharClass(buffer));
+						break;
 
-						case '{':
-							items.Add(new RegexQuantifier(buffer));
-							break;
+					case '{':
+						items.Add(new RegexQuantifier(buffer));
+						break;
 
-						case '|':
-							items.Add(new RegexAlternate(buffer));
-							break;
+					case '|':
+						items.Add(new RegexAlternate(buffer));
+						break;
 
-						case '\\':
+					case '\\':
+						items.Add(new RegexCharacter(buffer));
+						break;
+
+					case '#':
+						if (buffer.IgnorePatternWhitespace)
+						{
+							EatComment(buffer);
+						}
+						else
+						{
 							items.Add(new RegexCharacter(buffer));
-							break;
+						}
+						break;
 
-						case '#':
-							if (buffer.IgnorePatternWhitespace)
-							{
-								EatComment(buffer);
-							}
-							else
-							{
-								items.Add(new RegexCharacter(buffer));
-							}
-							break;
-
-						default:
-							items.Add(new RegexCharacter(buffer));
-							break;
-					}
+					default:
+						items.Add(new RegexCharacter(buffer));
+						break;
 				}
 			}
 		}
