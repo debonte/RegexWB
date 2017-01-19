@@ -29,13 +29,13 @@ namespace RegexTest
 			optionNames.Add("-x", "Ignore Whitespace Off");
 		}
 
-        public RegexCapture(RegexBuffer buffer)
-        {
-            TryParse(buffer);
-        }
-
         public override bool TryParse(RegexBuffer buffer)
         {
+            if (buffer.Current != '(')
+            {
+                return false;
+            }
+
             startLocation = buffer.Offset;
 			buffer.MoveNext();
 

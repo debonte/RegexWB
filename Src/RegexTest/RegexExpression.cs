@@ -2,6 +2,7 @@ using System;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace RegexTest
 {
@@ -77,6 +78,11 @@ namespace RegexTest
 			}
 		}
 
+        private IEnumerable<RegexItem> parseChainOfResponsibility = new[]
+        {
+            new RegexCapture()
+        };
+
 		public override bool TryParse(RegexBuffer buffer)
 		{
 			while (!buffer.AtEnd)
@@ -92,12 +98,16 @@ namespace RegexTest
 				}
 				else
 				{
+                    foreach (RegexItem regexItem in parseChainOfResponsibility)
+                    {
+                        if (regexItem.TryParse(buffer))
+                        {
+                            return true;
+                        }
+                    }
+
 					switch (buffer.Current)
 					{
-						case '(':
-							items.Add(new RegexCapture(buffer));
-							break;
-
 						case ')':
 							// end of closure; just return.
 							return true;
