@@ -14,7 +14,7 @@ namespace RegexTest
 
 		public RegexExpression(RegexBuffer buffer)
 		{
-			Parse(buffer);
+			TryParse(buffer);
 		}
 	
 		public ArrayList Items
@@ -77,7 +77,7 @@ namespace RegexTest
 			}
 		}
 
-		void Parse(RegexBuffer buffer)
+		public override void TryParse(RegexBuffer buffer)
 		{
 			while (!buffer.AtEnd)
 			{

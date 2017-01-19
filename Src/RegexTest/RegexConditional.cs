@@ -13,11 +13,16 @@ namespace RegexTest
 		RegexExpression yesNo;
 		int startLocation;
 
-			// Handle (?(expression)yes|no)
-			// when we get called, we're pointing to the first character of the expression
-		public RegexConditional(RegexBuffer buffer)
-		{
-			startLocation = buffer.Offset;
+        // Handle (?(expression)yes|no)
+        // when we get called, we're pointing to the first character of the expression
+        public RegexConditional(RegexBuffer buffer)
+        {
+            TryParse(buffer);
+        }
+
+        public override void TryParse(RegexBuffer buffer)
+        {
+            startLocation = buffer.Offset;
 
 			expression = new RegexExpression(buffer);
 			CheckClosingParen(buffer);

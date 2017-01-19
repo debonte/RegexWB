@@ -29,9 +29,14 @@ namespace RegexTest
 			optionNames.Add("-x", "Ignore Whitespace Off");
 		}
 
-		public RegexCapture(RegexBuffer buffer)
-		{
-			startLocation = buffer.Offset;
+        public RegexCapture(RegexBuffer buffer)
+        {
+            TryParse(buffer);
+        }
+
+        public override void TryParse(RegexBuffer buffer)
+        {
+            startLocation = buffer.Offset;
 			buffer.MoveNext();
 
 				// we're not in a series of normal characters, so clear

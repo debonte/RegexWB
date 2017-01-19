@@ -18,9 +18,14 @@ namespace RegexTest
 			this.character = characters;
 		}
 
-		public RegexCharacter(RegexBuffer buffer)
-		{
-			int startLoc = buffer.Offset;
+        public RegexCharacter(RegexBuffer buffer)
+        {
+            TryParse(buffer);
+        }
+
+        public override void TryParse(RegexBuffer buffer)
+        {
+        int startLoc = buffer.Offset;
 			bool quantifier = false;
 
 			switch (buffer.Current)

@@ -8,5 +8,7 @@ namespace RegexTest
 	public abstract class RegexItem
 	{
 		public abstract string ToString(int indent);
+
+        public abstract void TryParse(RegexBuffer buffer);
 	}
 }

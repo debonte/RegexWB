@@ -6,13 +6,18 @@ namespace RegexTest
 	class RegexAlternate: RegexItem
 	{
 		public RegexAlternate(RegexBuffer buffer)
-		{
-			buffer.AddLookup(this, buffer.Offset, buffer.Offset);
+        {
+            TryParse(buffer);
+        }
 
-			buffer.MoveNext();		// skip "|"
-		}
+        public override void TryParse(RegexBuffer buffer)
+        {
+            buffer.AddLookup(this, buffer.Offset, buffer.Offset);
 
-		public override string ToString(int offset)
+            buffer.MoveNext();      // skip "|"
+        }
+
+        public override string ToString(int offset)
 		{
 			return(new String(' ', offset) + "or");
 		}		

@@ -10,9 +10,14 @@ namespace RegexTest
 	{
 		string description;
 
-		public RegexQuantifier(RegexBuffer buffer)
-		{
-			int startLoc = buffer.Offset;
+        public RegexQuantifier(RegexBuffer buffer)
+        {
+            TryParse(buffer);
+        }
+
+        public override void TryParse(RegexBuffer buffer)
+        {
+            int startLoc = buffer.Offset;
 			buffer.MoveNext();
 
 			Regex regex;

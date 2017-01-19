@@ -11,9 +11,14 @@ namespace RegexTest
 				//RegexExpression expression;
 		string description;
 
-		public RegexCharClass(RegexBuffer buffer)
-		{
-			int startLoc = buffer.Offset;
+        public RegexCharClass(RegexBuffer buffer)
+        {
+            TryParse(buffer);
+        }
+
+        public override void TryParse(RegexBuffer buffer)
+        {
+            int startLoc = buffer.Offset;
 
 			buffer.MoveNext();
 
