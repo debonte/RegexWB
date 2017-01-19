@@ -15,7 +15,7 @@ namespace RegexTest
             TryParse(buffer);
         }
 
-        public override void TryParse(RegexBuffer buffer)
+        public override bool TryParse(RegexBuffer buffer)
         {
             int startLoc = buffer.Offset;
 			buffer.MoveNext();
@@ -57,6 +57,7 @@ namespace RegexTest
 				description = "missing '}' in quantifier";
 			}
 			buffer.AddLookup(this, startLoc, buffer.Offset - 1);
+            return true;
 		}
 
 		public override string ToString(int offset)

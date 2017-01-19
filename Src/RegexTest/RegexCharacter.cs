@@ -23,7 +23,7 @@ namespace RegexTest
             TryParse(buffer);
         }
 
-        public override void TryParse(RegexBuffer buffer)
+        public override bool TryParse(RegexBuffer buffer)
         {
         int startLoc = buffer.Offset;
 			bool quantifier = false;
@@ -91,6 +91,7 @@ namespace RegexTest
 				}
 			}
 			buffer.AddLookup(this, startLoc, buffer.Offset - 1, (character.Length == 1));
+            return true;
 		}
 
 		static Hashtable escaped = new Hashtable();

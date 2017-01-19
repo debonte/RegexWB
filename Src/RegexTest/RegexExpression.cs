@@ -77,7 +77,7 @@ namespace RegexTest
 			}
 		}
 
-		public override void TryParse(RegexBuffer buffer)
+		public override bool TryParse(RegexBuffer buffer)
 		{
 			while (!buffer.AtEnd)
 			{
@@ -100,7 +100,7 @@ namespace RegexTest
 
 						case ')':
 							// end of closure; just return.
-							return;
+							return true;
 
 						case '[':
 							items.Add(new RegexCharClass(buffer));
@@ -135,6 +135,8 @@ namespace RegexTest
 					}
 				}
 			}
+
+            return true;
 		}
 	}
 }

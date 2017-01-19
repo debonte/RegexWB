@@ -34,7 +34,7 @@ namespace RegexTest
             TryParse(buffer);
         }
 
-        public override void TryParse(RegexBuffer buffer)
+        public override bool TryParse(RegexBuffer buffer)
         {
             startLocation = buffer.Offset;
 			buffer.MoveNext();
@@ -89,6 +89,7 @@ namespace RegexTest
 				}
 			}
 			buffer.AddLookup(this, startLocation, buffer.Offset - 1);
+            return true;
 		}
 
 		void CheckClosingParen(RegexBuffer buffer)

@@ -16,7 +16,7 @@ namespace RegexTest
             TryParse(buffer);
         }
 
-        public override void TryParse(RegexBuffer buffer)
+        public override bool TryParse(RegexBuffer buffer)
         {
             int startLoc = buffer.Offset;
 
@@ -47,6 +47,7 @@ namespace RegexTest
 				description = "missing ']' in character class";
 			}
 			buffer.AddLookup(this, startLoc, buffer.Offset - 1);
+            return true;
 		}
 
 		public override string ToString(int offset)

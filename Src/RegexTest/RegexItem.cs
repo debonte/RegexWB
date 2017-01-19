@@ -9,6 +9,6 @@ namespace RegexTest
 	{
 		public abstract string ToString(int indent);
 
-        public abstract void TryParse(RegexBuffer buffer);
+        public abstract bool TryParse(RegexBuffer buffer);
 	}
 }
