@@ -47,7 +47,7 @@ namespace RegexTest
 
             if (match.Success)
             {
-                Offset += match.Groups["Rest"].Index;
+                offset += match.Groups["Rest"].Index;
             }
 
             return match;
@@ -83,10 +83,6 @@ namespace RegexTest
 			get
 			{
 				return offset;
-			}
-			set
-			{
-				offset = value;
 			}
 		}
 
