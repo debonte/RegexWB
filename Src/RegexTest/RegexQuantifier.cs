@@ -21,7 +21,7 @@ namespace RegexTest
 				// look for "n}", "n,}", or "n,m}"
 			regex = new Regex(@"(?<n>\d+)(?<Comma>,?)(?<m>\d*)\}");
 
-			match = buffer.MatchAndAdvancedPastFirstGroup(regex);
+			match = buffer.MatchAndAdvancePastFirstGroup(regex);
 			if (match.Success)
 			{
 				if (match.Groups["m"].Length != 0)

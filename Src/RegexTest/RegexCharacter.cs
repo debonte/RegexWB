@@ -179,7 +179,7 @@ namespace RegexTest
 						",
 				RegexOptions.IgnorePatternWhitespace);
 
-			Match match = buffer.MatchAndAdvancedPastFirstGroup(regex);
+			Match match = buffer.MatchAndAdvancePastFirstGroup(regex);
             if (match.Success)
 			{
 				special = true;

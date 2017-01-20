@@ -22,7 +22,7 @@ namespace RegexTest
 
 			regex = new Regex(@"(?<Negated>\^?)(?<Class>.+?)\]");
 
-			match = buffer.MatchAndAdvancedPastFirstGroup(regex);
+			match = buffer.MatchAndAdvancePastFirstGroup(regex);
             if (match.Success)
 			{
 				if (match.Groups["Negated"].ToString() == "^")

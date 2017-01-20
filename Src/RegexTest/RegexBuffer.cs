@@ -41,7 +41,7 @@ namespace RegexTest
             return result;
         }
 
-        public Match MatchAndSkipToRestGroup(Regex regex)
+        public Match MatchAndAdvanceToRestGroup(Regex regex)
         {
             Match match = regex.Match(Remainder);
 
@@ -53,7 +53,7 @@ namespace RegexTest
             return match;
         }
 
-        public Match MatchAndAdvancedPastFirstGroup(Regex regex)
+        public Match MatchAndAdvancePastFirstGroup(Regex regex)
         {
             Match match = regex.Match(Remainder);
 

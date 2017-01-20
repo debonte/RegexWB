@@ -141,7 +141,7 @@ namespace RegexTest
 						",
 				RegexOptions.IgnorePatternWhitespace);
 
-			match = buffer.MatchAndSkipToRestGroup(regex);
+			match = buffer.MatchAndAdvanceToRestGroup(regex);
             if (match.Success)
 			{
 				description = String.Format("Capture to <{0}>", match.Groups["Name"]);
@@ -163,7 +163,7 @@ namespace RegexTest
 						(?<Rest>.+)             # The rest of the expression
 						",
 				RegexOptions.IgnorePatternWhitespace);
-			Match match = buffer.MatchAndSkipToRestGroup(regex);
+			Match match = buffer.MatchAndAdvanceToRestGroup(regex);
             if (match.Success)
 			{
 				description = String.Format("Non-capturing Group");
@@ -191,7 +191,7 @@ namespace RegexTest
 						",
 				RegexOptions.IgnorePatternWhitespace);
 
-			Match match = buffer.MatchAndSkipToRestGroup(regex);
+			Match match = buffer.MatchAndAdvanceToRestGroup(regex);
             if (match.Success)
 			{
 				description = String.Format("Balancing Group <{0}>-<{1}>", match.Groups["Name1"], match.Groups["Name2"]);
@@ -212,7 +212,7 @@ namespace RegexTest
 						",
 				RegexOptions.IgnorePatternWhitespace);
 
-			Match match = buffer.MatchAndAdvancedPastFirstGroup(regex);
+			Match match = buffer.MatchAndAdvancePastFirstGroup(regex);
             if (match.Success)
 			{
 				string option = match.Groups["Options"].Value;
@@ -234,7 +234,7 @@ namespace RegexTest
 						",
 				RegexOptions.IgnorePatternWhitespace);
 
-			Match match = buffer.MatchAndSkipToRestGroup(regex);
+			Match match = buffer.MatchAndAdvanceToRestGroup(regex);
             if (match.Success)
 			{
 				switch (match.Groups["Assertion"].Value)
@@ -272,7 +272,7 @@ namespace RegexTest
 						(?<Rest>.+)             # The rest of the expression
 						",
 				RegexOptions.IgnorePatternWhitespace);
-			Match match = buffer.MatchAndSkipToRestGroup(regex);
+			Match match = buffer.MatchAndAdvanceToRestGroup(regex);
             if (match.Success)
 			{
 				description = String.Format("Non-backtracking subexpressio");
@@ -295,7 +295,7 @@ namespace RegexTest
 						(?<Rest>.+)             # The rest of the expression
 						",
 				RegexOptions.IgnorePatternWhitespace);
-			Match match = buffer.MatchAndSkipToRestGroup(regex);
+			Match match = buffer.MatchAndAdvanceToRestGroup(regex);
             if (match.Success)
 			{
 				description = String.Format("Conditional Subexpression");
