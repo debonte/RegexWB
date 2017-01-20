@@ -141,13 +141,10 @@ namespace RegexTest
 						",
 				RegexOptions.IgnorePatternWhitespace);
 
-			match = buffer.Match(regex);
+			match = buffer.MatchAndSkipToRestGroup(regex);
             if (match.Success)
 			{
 				description = String.Format("Capture to <{0}>", match.Groups["Name"]);
-				
-					// advance buffer to the rest of the expression
-				buffer.Offset += match.Groups["Rest"].Index;
 				expression = new RegexExpression(buffer);
 
 				CheckClosingParen(buffer);
@@ -166,12 +163,10 @@ namespace RegexTest
 						(?<Rest>.+)             # The rest of the expression
 						",
 				RegexOptions.IgnorePatternWhitespace);
-			Match match = buffer.Match(regex);
+			Match match = buffer.MatchAndSkipToRestGroup(regex);
             if (match.Success)
 			{
 				description = String.Format("Non-capturing Group");
-
-				buffer.Offset += match.Groups["Rest"].Index;
 				expression = new RegexExpression(buffer);
 
 				this.CheckClosingParen(buffer);
@@ -196,11 +191,10 @@ namespace RegexTest
 						",
 				RegexOptions.IgnorePatternWhitespace);
 
-			Match match = buffer.Match(regex);
+			Match match = buffer.MatchAndSkipToRestGroup(regex);
             if (match.Success)
 			{
 				description = String.Format("Balancing Group <{0}>-<{1}>", match.Groups["Name1"], match.Groups["Name2"]);
-				buffer.Offset += match.Groups["Rest"].Index;
 				expression = new RegexExpression(buffer);
 				CheckClosingParen(buffer);
 				return true;
@@ -240,7 +234,7 @@ namespace RegexTest
 						",
 				RegexOptions.IgnorePatternWhitespace);
 
-			Match match = buffer.Match(regex);
+			Match match = buffer.MatchAndSkipToRestGroup(regex);
             if (match.Success)
 			{
 				switch (match.Groups["Assertion"].Value)
@@ -261,7 +255,6 @@ namespace RegexTest
 						description = "zero-width negative lookbehind";
 						break;
 				}
-				buffer.Offset += match.Groups["Rest"].Index;
 				expression = new RegexExpression(buffer);
 				CheckClosingParen(buffer);
 				return true;
@@ -279,12 +272,10 @@ namespace RegexTest
 						(?<Rest>.+)             # The rest of the expression
 						",
 				RegexOptions.IgnorePatternWhitespace);
-			Match match = buffer.Match(regex);
+			Match match = buffer.MatchAndSkipToRestGroup(regex);
             if (match.Success)
 			{
 				description = String.Format("Non-backtracking subexpressio");
-
-				buffer.Offset += match.Groups["Rest"].Index;
 				expression = new RegexExpression(buffer);
 
 				this.CheckClosingParen(buffer);
@@ -304,12 +295,10 @@ namespace RegexTest
 						(?<Rest>.+)             # The rest of the expression
 						",
 				RegexOptions.IgnorePatternWhitespace);
-			Match match = buffer.Match(regex);
+			Match match = buffer.MatchAndSkipToRestGroup(regex);
             if (match.Success)
 			{
 				description = String.Format("Conditional Subexpression");
-
-				buffer.Offset += match.Groups["Rest"].Index;
 				expression = new RegexConditional(buffer);
 
 				return true;
