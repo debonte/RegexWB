@@ -21,7 +21,7 @@ namespace RegexTest
 				// look for "n}", "n,}", or "n,m}"
 			regex = new Regex(@"(?<n>\d+)(?<Comma>,?)(?<m>\d*)\}");
 
-			match = buffer.Match(regex);
+			match = buffer.MatchAndAdvancedPastFirstGroup(regex);
 			if (match.Success)
 			{
 				if (match.Groups["m"].Length != 0)
@@ -39,7 +39,6 @@ namespace RegexTest
 					description = String.Format("Exactly {0} times", 
 						match.Groups["n"]);
 				}
-				buffer.Offset += match.Groups[0].Length;
 
 				if (!buffer.AtEnd && buffer.Current == '?')
 				{

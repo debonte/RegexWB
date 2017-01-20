@@ -46,6 +46,18 @@ namespace RegexTest
             return regex.Match(Remainder);
         }
 
+        public Match MatchAndAdvancedPastFirstGroup(Regex regex)
+        {
+            Match match = regex.Match(Remainder);
+
+            if (match.Success)
+            {
+                offset += match.Groups[0].Length;
+            }
+
+            return match;
+        }
+
         public void MoveNext()
 		{
 			offset++;

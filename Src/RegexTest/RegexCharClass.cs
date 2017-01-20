@@ -22,7 +22,7 @@ namespace RegexTest
 
 			regex = new Regex(@"(?<Negated>\^?)(?<Class>.+?)\]");
 
-			match = buffer.Match(regex);
+			match = buffer.MatchAndAdvancedPastFirstGroup(regex);
             if (match.Success)
 			{
 				if (match.Groups["Negated"].ToString() == "^")
@@ -35,7 +35,6 @@ namespace RegexTest
 					description = String.Format("Any character in \"{0}\"", 
 						match.Groups["Class"]);
 				}
-				buffer.Offset += match.Groups[0].Length;
 			}
 			else
 			{

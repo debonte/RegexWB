@@ -179,12 +179,11 @@ namespace RegexTest
 						",
 				RegexOptions.IgnorePatternWhitespace);
 
-			Match match = buffer.Match(regex);
+			Match match = buffer.MatchAndAdvancedPastFirstGroup(regex);
             if (match.Success)
 			{
 				special = true;
 				this.character = String.Format("Backreference to match: {0}", match.Groups["Name"]);
-				buffer.Offset += match.Groups[0].Length;
 				return true;
 			}
 			return false;

@@ -218,14 +218,13 @@ namespace RegexTest
 						",
 				RegexOptions.IgnorePatternWhitespace);
 
-			Match match = buffer.Match(regex);
+			Match match = buffer.MatchAndAdvancedPastFirstGroup(regex);
             if (match.Success)
 			{
 				string option = match.Groups["Options"].Value;
 				description = String.Format("Set options to {0}", 
 					optionNames[option]);
 				expression = null;
-				buffer.Offset += match.Groups[0].Length;
 				return true;
 			}
 			return false;
