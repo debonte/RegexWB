@@ -33,7 +33,15 @@ namespace RegexTest
 			}
 		}
 
-		public void MoveNext()
+        public string Read(int length)
+        {
+            // TODO: Throw if read would go past end of buffer.
+            string result = String.Substring(0, length);
+            offset += length;
+            return result;
+        }
+
+        public void MoveNext()
 		{
 			offset++;
 		}

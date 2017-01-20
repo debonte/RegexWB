@@ -134,9 +134,8 @@ namespace RegexTest
 					{
 						case 'u':
 							buffer.MoveNext();
-							string unicode = buffer.String.Substring(0, 4);
+                            string unicode = buffer.Read(4);
 							character = "Unicode " + unicode;
-							buffer.Offset += 4;
 							break;
 
 						case ' ':
@@ -153,9 +152,8 @@ namespace RegexTest
 
 						case 'x':
 							buffer.MoveNext();
-							string number = buffer.String.Substring(0, 2);
+							string number = buffer.Read(2);
 							character = "Hex " + number;
-							buffer.Offset += 2;
 							break;
 
 						default:

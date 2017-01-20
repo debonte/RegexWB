@@ -108,7 +108,7 @@ namespace RegexTest
 					String.Format("Unterminated closure at offset {0}",
 					              buffer.Offset));
 			}
-			buffer.Offset++;	// eat closing parenthesis
+			buffer.MoveNext();	// eat closing parenthesis
 		}
 
 		bool HandlePlainOldCapture(RegexBuffer buffer)
