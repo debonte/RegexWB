@@ -80,7 +80,7 @@ namespace RegexTest
 				if (!HandlePlainOldCapture(buffer))
 				{
 					throw new Exception(
-						String.Format("Unrecognized capture: {0}", buffer.String));
+						String.Format("Unrecognized capture: {0}", buffer.Remainder));
 				}
 			}
 			buffer.AddLookup(this, startLocation, buffer.Offset - 1);

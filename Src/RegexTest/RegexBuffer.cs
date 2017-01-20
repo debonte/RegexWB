@@ -36,14 +36,14 @@ namespace RegexTest
         public string Read(int length)
         {
             // TODO: Throw if read would go past end of buffer.
-            string result = String.Substring(0, length);
+            string result = Remainder.Substring(0, length);
             offset += length;
             return result;
         }
 
         public Match Match(Regex regex)
         {
-            return regex.Match(String);
+            return regex.Match(Remainder);
         }
 
         public void MoveNext()
@@ -71,7 +71,7 @@ namespace RegexTest
 			}
 		}
 
-		public string String
+		public string Remainder
 		{
 			get
 			{
