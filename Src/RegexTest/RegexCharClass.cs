@@ -22,8 +22,8 @@ namespace RegexTest
 
 			regex = new Regex(@"(?<Negated>\^?)(?<Class>.+?)\]");
 
-			match = regex.Match(buffer.String);
-			if (match.Success)
+			match = buffer.Match(regex);
+            if (match.Success)
 			{
 				if (match.Groups["Negated"].ToString() == "^")
 				{

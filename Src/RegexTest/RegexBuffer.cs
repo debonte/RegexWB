@@ -41,6 +41,11 @@ namespace RegexTest
             return result;
         }
 
+        public Match Match(Regex regex)
+        {
+            return regex.Match(String);
+        }
+
         public void MoveNext()
 		{
 			offset++;

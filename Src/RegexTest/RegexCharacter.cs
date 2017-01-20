@@ -179,8 +179,8 @@ namespace RegexTest
 						",
 				RegexOptions.IgnorePatternWhitespace);
 
-			Match match = regex.Match(buffer.String);
-			if (match.Success)
+			Match match = buffer.Match(regex);
+            if (match.Success)
 			{
 				special = true;
 				this.character = String.Format("Backreference to match: {0}", match.Groups["Name"]);
